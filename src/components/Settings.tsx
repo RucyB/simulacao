@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Settings as SettingsIcon, Bell, Volume2, Monitor, Palette } from 'lucide-react';
+import { Settings as SettingsIcon, Bell, Monitor, Palette } from 'lucide-react';
 
 const Settings: React.FC = () => {
   const [settings, setSettings] = useState({

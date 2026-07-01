@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Play, Calendar, Filter } from 'lucide-react';
+import { Calendar, Filter } from 'lucide-react';
 import { simulateMatch } from '../lib/matchSimulator';
 import { realWorldTeams } from '../data/realWorldCupData';
 import MatchCard from './MatchCard';
@@ -21,7 +21,7 @@ interface MatchesProps {
   groups: any[];
 }
 
-const Matches: React.FC<MatchesProps> = ({ matches, groups }) => {
+const Matches: React.FC<MatchesProps> = ({ matches }) => {
   const [selectedPhase, setSelectedPhase] = useState<string>('all');
   const [simulatedMatches, setSimulatedMatches] = useState<Match[]>(matches);
 

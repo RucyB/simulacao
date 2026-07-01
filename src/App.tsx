@@ -6,7 +6,7 @@ import Matches from './components/Matches';
 import Players from './components/Players';
 import Settings from './components/Settings';
 import Help from './components/Help';
-import { realWorldMatches, realWorldGroups, realWorldPlayerStats } from './data/realWorldCupData';
+import { realWorldMatches, realWorldGroups } from './data/realWorldCupData';
 
 const App: React.FC = () => {
   return (
@@ -15,7 +15,7 @@ const App: React.FC = () => {
         <Route path="/" element={<Dashboard />} />
         <Route path="/selecoes" element={<Teams />} />
         <Route path="/partidas" element={<Matches matches={realWorldMatches} groups={realWorldGroups} />} />
-        <Route path="/jogadores" element={<Players players={realWorldPlayerStats} />} />
+        <Route path="/jogadores" element={<Players />} />
         <Route path="/configuracoes" element={<Settings />} />
         <Route path="/ajuda" element={<Help />} />
         <Route path="*" element={<Navigate to="/" replace />} />

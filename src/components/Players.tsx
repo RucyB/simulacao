@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Search, Trophy, Star } from 'lucide-react';
+import { Search, Star } from 'lucide-react';
 import { realWorldTeams } from '../data/realWorldCupData';
 
 interface Player {

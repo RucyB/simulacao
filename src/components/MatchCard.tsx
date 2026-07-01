@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Play, Clock, MapPin } from 'lucide-react';
+import { Play, Clock } from 'lucide-react';
 
 interface Match {
   id: string;

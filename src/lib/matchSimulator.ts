@@ -129,7 +129,7 @@ export function simulateMatch(teamA: Team, teamB: Team): MatchResult {
   };
 }
 
-function generateGoalEvent(attackingTeam: Team, defendingTeam: Team, minute: number, side: 'home' | 'away'): { goal: MatchEvent; assist?: MatchEvent } {
+function generateGoalEvent(attackingTeam: Team, _defendingTeam: Team, minute: number, side: 'home' | 'away'): { goal: MatchEvent; assist?: MatchEvent } {
   // Weighted random selection based on position and overall
   const attackers = attackingTeam.players.filter(p => p.position === 'ATA');
   const midfielders = attackingTeam.players.filter(p => p.position === 'MEI');

@@ -4,19 +4,7 @@ import { Menu, X, Calendar, Trophy, Users, TrendingUp, Star } from 'lucide-react
 import Sidebar from './Sidebar';
 import MatchCard from './MatchCard';
 import GroupTable from './GroupTable';
-import Leaderboard from './Leaderboard';
-import { mockMatches, mockGroups, mockTopScorers, mockMvpPlayers, mockTopAssists } from '../data/mockData';
-
-interface Match {
-  id: string;
-  phase: string;
-  homeTeam: string;
-  awayTeam: string;
-  homeScore?: number;
-  awayScore?: number;
-  status: 'Scheduled' | 'Live' | 'Finished';
-  matchDate: Date;
-}
+import { mockMatches, mockGroups, mockTopScorers, mockMvpPlayers } from '../data/mockData';
 
 const Dashboard: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(true);
