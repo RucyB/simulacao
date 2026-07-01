@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Selection {
+  id          String   @id @default(cuid())
+  name        String   @unique
+  slug        String   @unique
+  flagEmoji   String
+  group       String   // A through L
+  attack      Int      // 0-100
+  defense     Int      // 0-100
+  midfield    Int      // 0-100
+  overall     Int      // 0-100 (calculated from players)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  players     Player[]
+  homeMatches Match[]  @relation("HomeTeam")
+  awayMatches Match[]  @relation("AwayTeam")
+
+  @@map("selections")
+}
+
+model Player {
+  id              String    @id @default(cuid())
+  name            String
+  age             Int
+  position        String    // GOL, DEF, MEI, ATA
+  overall         Int       // 0-100
+  marketValue     Float     // in millions
+  goals           Int       @default(0)
+  assists         Int       @default(0)
+  yellowCards     Int       @default(0)
+  redCards        Int       @default(0)
+  matchRatings    Float     @default(0) // average rating
+  mvpCount        Int       @default(0)
+  selectionId     String
+  selection       Selection @relation(fields: [selectionId], references: [id], onDelete: Cascade)
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  matchEvents     MatchEvent[]
+
+  @@map("players")
+}
+
+model Match {
+  id              String    @id @default(cuid())
+  phase           String    // Groups, RoundOf32, RoundOf16, QuarterFinals, SemiFinals, Final
+  round           Int?      // For group stage (1, 2, 3)
+  homeTeamId      String
+  awayTeamId      String
+  homeScore       Int?
+  awayScore       Int?
+  status          String    // Scheduled, Live, Finished
+  matchDate       DateTime
+  minute          Int?      // Current minute if live
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+
+  homeTeam        Selection @relation("HomeTeam", fields: [homeTeamId], references: [id])
+  awayTeam        Selection @relation("AwayTeam", fields: [awayTeamId], references: [id])
+  events          MatchEvent[]
+
+  @@map("matches")
+}
+
+model MatchEvent {
+  id          String   @id @default(cuid())
+  type        String   // Goal, YellowCard, RedCard, Assist
+  minute      Int
+  playerId    String
+  matchId     String
+  createdAt   DateTime @default(now())
+
+  player      Player   @relation(fields: [playerId], references: [id])
+  match       Match    @relation(fields: [matchId], references: [id], onDelete: Cascade)
+
+  @@map("match_events")
+}

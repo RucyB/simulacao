@@ -1,0 +1,218 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: #0D1117;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+
+  /* Custom Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #161B22;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #0066FF;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #7B2EFF;
+  }
+}
+
+@layer components {
+  /* Glassmorphism Effect */
+  .glass {
+    @apply backdrop-blur-md bg-white/5 border border-white/10;
+  }
+
+  .glass-strong {
+    @apply backdrop-blur-lg bg-white/10 border border-white/20;
+  }
+
+  /* Gradient Text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-[#0066FF] to-[#7B2EFF] bg-clip-text text-transparent;
+  }
+
+  .gradient-text-gold {
+    @apply bg-gradient-to-r from-[#FFD700] to-orange-500 bg-clip-text text-transparent;
+  }
+
+  /* Glow Effects */
+  .glow-blue {
+    box-shadow: 0 0 15px rgba(0, 102, 255, 0.5);
+  }
+
+  .glow-purple {
+    box-shadow: 0 0 15px rgba(123, 46, 255, 0.5);
+  }
+
+  .glow-green {
+    box-shadow: 0 0 15px rgba(0, 255, 136, 0.5);
+  }
+
+  /* Card Hover Effects */
+  .card-hover {
+    @apply transition-all duration-300 hover:scale-105 hover:border-[#0066FF]/50;
+  }
+
+  /* Button Styles */
+  .btn-primary {
+    @apply px-6 py-3 bg-gradient-to-r from-[#0066FF] to-[#7B2EFF] rounded-lg font-semibold transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,102,255,0.6)] hover:scale-105 active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-3 bg-white/5 border border-white/10 rounded-lg font-semibold transition-all duration-300 hover:bg-white/10 hover:border-[#0066FF]/50;
+  }
+
+  /* Input Styles */
+  .input-dark {
+    @apply w-full px-4 py-3 bg-[#0D1117] border border-gray-800 rounded-lg text-white placeholder-gray-500 focus:outline-none focus:border-[#0066FF] focus:ring-2 focus:ring-[#0066FF]/20 transition-all;
+  }
+
+  /* Badge Styles */
+  .badge {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+  }
+
+  .badge-success {
+    @apply bg-[#00FF88]/20 text-[#00FF88] border border-[#00FF88]/50;
+  }
+
+  .badge-warning {
+    @apply bg-[#FFD700]/20 text-[#FFD700] border border-[#FFD700]/50;
+  }
+
+  .badge-danger {
+    @apply bg-red-500/20 text-red-400 border border-red-500/50;
+  }
+
+  .badge-info {
+    @apply bg-[#0066FF]/20 text-[#0066FF] border border-[#0066FF]/50;
+  }
+}
+
+@layer utilities {
+  /* Animation Utilities */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+
+  /* Text Utilities */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px currentColor;
+  }
+}
+
+/* Keyframe Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Custom Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 102, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 102, 255, 0.8), 0 0 30px rgba(123, 46, 255, 0.6);
+  }
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
+
+/* Loading Spinner */
+.spinner {
+  @apply w-8 h-8 border-4 border-[#0066FF]/20 border-t-[#0066FF] rounded-full;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Responsive Utilities */
+@media (max-width: 640px) {
+  .mobile-hide {
+    display: none;
+  }
+}
+
+@media (min-width: 641px) {
+  .mobile-show {
+    display: none;
+  }
+}
